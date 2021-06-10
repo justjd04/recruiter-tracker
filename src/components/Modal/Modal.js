@@ -87,9 +87,11 @@ export const Modal = ({ showModal, setShowModal }) => {
         <Background onClick={closeModal} ref={modalRef}>
           
             <ModalWrapper showModal={showModal}>
+              
               <ModalContent>
                 <div>Candidate Information</div>
                 <TrackerForm tracker={tracker} setTracker={setTracker} />
+              
               </ModalContent>
               <CloseModalButton
                 aria-label='Close modal'

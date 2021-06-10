@@ -1,7 +1,7 @@
 import React from 'react';
-import Login from '../components/Forms/Login';
+import Register from '../components/Forms/Register';
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <div
       style={{
@@ -11,9 +11,9 @@ const SignIn = () => {
         height: '90vh'
       }}
     >
-      <Login/>
+      <Register/>
     </div>
   );
 };
 
-export default SignIn;
+export default SignUp;

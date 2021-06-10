@@ -7,10 +7,6 @@ const GlobalStyles = createGlobalStyle`
   padding: 0;
   font-family: montserrat, sans-serif;
 }
-
-body {
-	background-color: #F8F8F8;
-}
 `;
 
 export default GlobalStyles;

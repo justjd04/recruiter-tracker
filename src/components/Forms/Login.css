@@ -1,0 +1,59 @@
+.regField {
+    width: 100%;
+    background: white;
+    background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.3)
+  );
+    color: #000;
+    border: 1px solid rgb(186, 227, 238);
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.submitBtn {
+    width: 100%;
+    background: linear-gradient(to right top, #011d79, #4d58f5);
+    border: 0;
+    color: #b6c2ec;
+    padding: 15px;
+    margin: 10px 0 0 0;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submitBtn:hover {
+    color: #ffffff;
+    background: linear-gradient(to right top, #011d79, #434cce);
+
+}
+
+
+.underLine {
+    text-align: center;
+    margin: 7px 0 0 0;
+    display: block;
+}
+
+.linkBtn {
+    border: 0;
+    background-color: unset;
+    text-decoration: underline;
+    color: #3c4043;
+    padding: 0;
+    margin: 0;
+}
+
+.linkBtn:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.linkBtn:focus,
+.submitBtn:focus{
+    outline: none;
+}

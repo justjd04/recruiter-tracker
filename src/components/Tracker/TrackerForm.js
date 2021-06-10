@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-
+import fire from '../../config/Fire';
 
 const TrackerFormStyles = styled.div`
 div {
@@ -38,64 +38,168 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
+
+.enter_new {
+    width: 100%;
+    background: linear-gradient(to right top, #011d79, #4d58f5);
+    border: 0;
+    color: #b6c2ec;
+    padding: 15px;
+    margin: 10px 10px 0 10px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.enter_new:hover {
+    color: #ffffff;
+    background: linear-gradient(to right top, #011d79, #434cce);
+
+}
 `;
 
 
-function TrackerForm({tracker, setTracker}) {
+class TrackerForm extends React.Component {
 
-    
-    const name = useRef(null);
-	const company = useRef(null);
-	const position = useRef(null);
-	const link = useRef(null);
-    
-	
-    const Enter = e => {
-        e.preventDefault();
+  state = {
+      transactions: [],
+
+      name: '',
+      company: '',
+      position: '',
+      link: '',
+      currentUID: fire.auth().currentUser.uid
+  }
 
 
-        setTracker([...tracker, {
-            "name": name.current.value,
-			"company": company.current.value,
-			"position": position.current.value,
-			"link": link.current.value,
-           
-        }]);
+  handleChange = input => e => {
+      this.setState({
+          [input]: e.target.value !=="0" ? e.target.value : ""
+      });
+  }
 
-        name.current.value = "";
-		company.current.value = "";
-		position.current.value = "";
-		link.current.value = "";
 
- 
 
-    }
+  // add transaction
+  addNewTransaction = () => {
+      const {name, company, position, link, currentUID} = this.state;
+      
+
+      // validation
+      if(name && company && position && link){
+
+          const BackUpState = this.state.transactions;
+          BackUpState.push({
+              id: BackUpState.length + 1,
+              name: name,
+              company: company,
+              position: position,
+              link: link,
+              user_id: currentUID
+          });
+          
+          fire.database().ref('Transactions/' + currentUID).push({
+              id: BackUpState.length,
+              name: name,
+              company: company,
+              position: position,
+              link: link,
+              user_id: currentUID
+          }).then((data) => {
+              //success callback
+              console.log('success callback');
+              this.setState({
+                  transactions: BackUpState,
+                  name: '',
+                  company: '',
+                  position: '',
+                  link: ''
+              })
+          }).catch((error)=>{
+              //error callback
+              console.log('error ' , error)
+          });
+
+      }
+  }
+
+  componentWillMount(){
+      const {currentUID} = this.state;
+      const BackUpState = this.state.transactions;
+      fire.database().ref('Transactions/' + currentUID).once('value',
+      (snapshot) => {
+          // console.log(snapshot);
+          snapshot.forEach((childSnapshot) => {
+              
+              BackUpState.push({
+                  id: childSnapshot.val().id,
+                  name: childSnapshot.val().name,
+                  company: childSnapshot.val().company,
+                  position: childSnapshot.val().position,
+                  link: childSnapshot.val().link,
+                  user_id: childSnapshot.val().user_id
+              });
+              // console.log(childSnapshot.val().name);
+          });
+          this.setState({
+              transactions: BackUpState,
+          });
+      });
+  }
+    render() {
     return (
-        <TrackerFormStyles>
-        <form className="tracker-form" onSubmit={Enter}>
-            <div>
-			<input type="text" name="name" id="name" 
-            placeholder="Name" ref={name}/>
-            
-			<input type="text" name="company" id="company" 
-            placeholder="Company" ref={company}/>
-			</div>
 
-            <div>
-			<input type="text" name="position" id="position" 
-            placeholder="Position" ref={position}/>
-			
-			<input type="url" name="link" id="link"
-			placeholder="Link" ref={link}/>
-			</div>
+        <TrackerFormStyles>
+
+        <form className="tracker-form">
+      <div>
+			<input
+      onChange={this.handleChange('name')}
+      value={this.state.name}
+      placeholder="Name"
+      type="text"
+      name="name"
+      id="name"
+      />
+
+      <input
+      onChange={this.handleChange('company')}
+      value={this.state.company}
+      placeholder="Company"
+      type="text"
+      name="company"
+      id="company"
+     />
+     </div>
+     <div>   
+			<input 
+      onChange={this.handleChange('position')}
+      value={this.state.position}
+      placeholder="Position"
+      type="text"
+      name="position"
+      id="position"
+      />
+
+			<input 
+      onChange={this.handleChange('link')}
+      value={this.state.link}
+      placeholder="Link"
+      type="url"
+      name="link"
+      />
+      </div>
 
 			<p>
-            <input type="submit" value="Enter"/>
+      <button onClick={() => this.addNewTransaction()} className="enter_new">Enter</button>
 			</p>
 
-        </form>
+        </form>  
+        
         </TrackerFormStyles>
+    
     );
+  }
 }
 
 export default TrackerForm;

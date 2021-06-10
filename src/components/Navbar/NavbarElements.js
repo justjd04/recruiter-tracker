@@ -2,17 +2,18 @@ import { FaBars } from 'react-icons/fa';
 import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+
 export const Nav = styled.nav`
   background: #000;
   height: 80px;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem calc((100vw - 1000px) / 2);
   z-index: 10;
 
   /* Third Nav */
   /* justify-content: flex-start; */
 `;
+
 
 export const NavLink = styled(Link)`
   color: #fff;
@@ -22,6 +23,11 @@ export const NavLink = styled(Link)`
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
+  
+  
+  :hover{
+      color: #ff0080;
+  }
 
   &.active {
     color: #15cdfc;
@@ -46,7 +52,7 @@ export const Bars = styled(FaBars)`
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: -24px;
+
 
   /* Second Nav */
   /* margin-right: 24px; */
@@ -60,10 +66,57 @@ export const NavMenu = styled.div`
   }
 `;
 
+export const NavLogin = styled.div`
+  display: flex;
+  align-items: center;
+
+  .sign_up {
+    position: relative;
+    left: 35px;
+  }
+
+
+  /* Second Nav */
+  /* margin-right: 24px; */
+
+  /* Third Nav */
+  /* width: 100vw;
+  white-space: nowrap; */
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+
+  .exit {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 16px;
+            text-align: center;
+            font-family: sans-serif;
+            color: #ffffff;
+            height: 40px;
+            width: 80px;
+            padding: 10px 5px;
+            border: 0;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 50px;
+            overflow: hidden;
+            background: #000000;
+
+            :hover{
+             color: #ff0080;
+            }
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
+        }
+`;
+
 export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
-  margin-right: 24px;
 
   /* Third Nav */
   /* justify-content: flex-end;
@@ -75,22 +128,8 @@ export const NavBtn = styled.nav`
 `;
 
 export const NavBtnLink = styled(Link)`
-  border-radius: 4px;
-  background: #256ce1;
-  padding: 10px 22px;
-  color: #fff;
+  padding: 0;
   outline: none;
   border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
   text-decoration: none;
-
-  /* Second Nav */
-  margin-left: 24px;
-
-  &:hover {
-    transition: all 0.2s ease-in-out;
-    background: #fff;
-    color: #010606;
-  }
 `;

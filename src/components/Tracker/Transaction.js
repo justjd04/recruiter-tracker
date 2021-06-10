@@ -4,7 +4,7 @@ import DatePick from '../DatePick';
 import { BsBoxArrowUpRight } from "react-icons/bs";
 
 
-const TrackerItemStyles = styled.div`
+const TransactionStyles = styled.div`
 button {
 	border: none;
 	outline: none;
@@ -12,6 +12,8 @@ button {
 }
 .tracker-item {
 	position: relative;
+    top: 200px;
+    box-sizing: border-box;
     display: flex;
     margin: 5px;
 	background-color: #FFF;
@@ -65,12 +67,18 @@ button {
     border-radius: 3px;
 }
 .link_icon:hover {
-    box-shadow: 0px 0px 6px rgba(246, 36, 89, 1);
+	background-color: #FF1E2D;
+	color: #FFF;
 }
 #status {
     font-size: 17px;
     text-align: center;
     border-radius: 3px;
+	padding: 2px;
+	border: 0;
+   -moz-appearance: none;
+   -webkit-appearance: none;
+   appearance: none;
 }
 #status:hover{
     box-shadow: 0px 0px 6px rgba(3, 201, 169, 1)
@@ -83,28 +91,22 @@ button {
 }
 `;
 
-function TrackerItem({ tracker, index, removeTracker }) {
-    let date = new Date(tracker.date);
-    let month = date.getMonth();
-    let day = date.getDate();
-    let year = date.getFullYear();
+const Transaction = props => {
 
-
-    const removeHandle = i => {
-        removeTracker(i);
+	const sortByDate = (a, b) => {
+        return b.date - a.date;
     }
 
     return (
-        <TrackerItemStyles>
+        <TransactionStyles>
         <div className="tracker-item">
-            <button className="remove-item" onClick={() => 
-            removeHandle(index)}>x</button>
+            <button className="remove-item">x</button>
 
-            <div className="name">{tracker.name}</div>
+            <div className="name">{props.name}</div>
 
-            <div className="company">{tracker.company}</div>
+            <div className="company">{props.company}</div>
 
-            <div className="position">{tracker.position}</div>
+            <div className="position">{props.position}</div>
 
             <div className="status"><select name="status" id="status"> 
 			<option id="option1" selected >Submitted</option>
@@ -119,10 +121,10 @@ function TrackerItem({ tracker, index, removeTracker }) {
 
             <div className="date"><DatePick/></div>
 
-            <div className="link"><a href={tracker.link} target="_blank"><BsBoxArrowUpRight className="link_icon"/></a></div>
+            <div className="link"><a href={props.link} target="_blank"><BsBoxArrowUpRight className="link_icon"/></a></div>
         </div>
-        </TrackerItemStyles>
+        </TransactionStyles>
     )
 }
 
-export default TrackerItem;
+export default Transaction;

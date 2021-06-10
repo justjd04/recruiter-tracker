@@ -12,7 +12,8 @@ const Container = styled.div`
 const Button = styled.button`
   display:flex;
   position: absolute;
-  right: 80px;
+  top: -230px;
+  right: 50px;
   box-sizing: border-box;
   padding: 5px ;
   border-radius: 4px;
@@ -22,6 +23,7 @@ const Button = styled.button`
   font-size: 40px;
   font-weight: bolder;
   cursor: pointer;
+  z-index: 10;
 `;
 
 function ModalApp() {
