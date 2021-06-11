@@ -6,6 +6,13 @@ const GlobalStyles = createGlobalStyle`
   margin: 0;
   padding: 0;
   font-family: montserrat, sans-serif;
+
+  .Spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 }
 `;
 

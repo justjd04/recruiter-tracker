@@ -75,6 +75,8 @@ button {
 #status:hover{
     box-shadow: 0px 0px 6px rgba(3, 201, 169, 1)
 }
+
+
 #option7, #option8 {
     color: #FF1E2D;
 }

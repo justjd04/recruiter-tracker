@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Main.css';
 import fire from '../config/Fire';
 import Login from './Forms/Login';
 import Register from './Forms/Register';
@@ -49,7 +48,6 @@ export default class Main extends Component {
 
               <GetStartedBtn/>
 
-            
 
             ) : (<Tracker />)
           }  

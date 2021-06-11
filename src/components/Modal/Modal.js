@@ -7,20 +7,21 @@ const Background = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0);
-  position: absolute;
-  top: 150px;
   display: flex;
   justify-content: center;
 `;
 
 const ModalWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 500px;
   height: 250px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
   display: grid;
-  position: relative;
   z-index: 10;
   border-radius: 10px;
 `;
