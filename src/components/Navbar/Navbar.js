@@ -45,7 +45,7 @@ render(){
     <>
       <Nav>
         <NavLink className='logo' to='/'>
-          <img src={require('../../images/logo.svg')} alt='logo' /> 
+          <img src="/images/recruiter.png" alt="logo" width="50" height="50"/> 
         </NavLink>
         
         <NavMenu>

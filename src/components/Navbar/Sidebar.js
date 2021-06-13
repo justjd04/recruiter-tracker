@@ -4,6 +4,7 @@ import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import styled from 'styled-components';
+import LogElements from './LogElements';
 
 const SidebarStyles = styled.div`
 .navbar {
@@ -165,18 +166,10 @@ function Sidebar() {
                 </li>
 
                 <br></br>
-                 
+
                 <li>
-                  <Link to='/sign-in'>
-                    <span>Sign in</span>
-                  </Link>
-                </li>
-  
-                <li>
-                  <Link to='#'>
-                    <span>Log out</span>
-                  </Link>
-                </li>                              
+                  <LogElements/>
+                </li>                            
               );
           </ul>
         </nav>
