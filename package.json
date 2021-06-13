@@ -1,8 +1,7 @@
 {
-  "name": "recruitment-tracker",
+  "name": "recruiter-tracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://justjd04.github.io/recruiter-tracker",
   "dependencies": {
     "@bit/nexxtway.react-rainbow.date-picker": "^1.10.0",
     "@testing-library/jest-dom": "^5.11.4",

@@ -4,12 +4,12 @@ import fire from '../../config/Fire';
 import {
   Nav,
   NavLink,
-  Bars,
   NavMenu,
   NavBtn,
   NavBtnLink,
   NavLogin
 } from './NavbarElements';
+import Sidebar from './Sidebar';
 
 class Navbar extends Component {
 
@@ -44,10 +44,10 @@ render(){
   return (
     <>
       <Nav>
-        <NavLink to='/'>
+        <NavLink className='logo' to='/'>
           <img src={require('../../images/logo.svg')} alt='logo' /> 
         </NavLink>
-        <Bars />
+        
         <NavMenu>
         <NavLink to='/' activeStyle>
             Home
@@ -72,17 +72,18 @@ render(){
 
         
         <NavLogin>
-          
+         
         {!this.state.user ?
             (
-
+        <> 
         <NavLink className="sign_up" to='/sign-up' activeStyle>
             Sign Up
-        </NavLink>,
+        </NavLink>
 
         <NavBtn>
           <NavBtnLink to='/sign-in'><LoginBtn/></NavBtnLink>
         </NavBtn>
+        </>
 
         ) : (<button className="exit" onClick={this.logout}>Log Out</button>)
         } 
@@ -91,6 +92,10 @@ render(){
         
 
       </Nav>
+
+          <Sidebar className="sidebar"/>
+      
+          
     </>
   );
 }
