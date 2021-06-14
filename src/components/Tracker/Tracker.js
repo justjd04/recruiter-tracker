@@ -45,7 +45,9 @@ class Tracker extends Component {
         name: '',
         company: '',
         position: '',
-        link: '',
+        status: '',
+        date: '',
+        link: '', 
         currentUID: fire.auth().currentUser.uid
     }
 
@@ -64,7 +66,7 @@ class Tracker extends Component {
 
     // add transaction
     addNewTransaction = () => {
-        const {name, company, position, link, currentUID} = this.state;
+        const {name, company, position, link, status, date, currentUID} = this.state;
         
 
         // validation
@@ -76,6 +78,8 @@ class Tracker extends Component {
                 name: name,
                 company: company,
                 position: position,
+                status: status,
+                date: date,
                 link: link,
                 user_id: currentUID
             });
@@ -85,6 +89,8 @@ class Tracker extends Component {
                 name: name,
                 company: company,
                 position: position,
+                status: status,
+                date: date,
                 link: link,
                 user_id: currentUID
             }).then((data) => {
@@ -95,6 +101,8 @@ class Tracker extends Component {
                     name: '',
                     company: '',
                     position: '',
+                    status: '',
+                    date: '',
                     link: ''
                 })
             }).catch((error)=>{
@@ -119,6 +127,8 @@ class Tracker extends Component {
                     company: childSnapshot.val().company,
                     position: childSnapshot.val().position,
                     link: childSnapshot.val().link,
+                    status: childSnapshot.val().status,
+                    date: childSnapshot.val().date,
                     user_id: childSnapshot.val().user_id
                 });
                 // console.log(childSnapshot.val().name);
@@ -153,6 +163,8 @@ class Tracker extends Component {
                                     name={this.state.transactions[id].name}
                                     company={this.state.transactions[id].company}
                                     position={this.state.transactions[id].position}
+                                    status={this.state.transactions[id].status}
+                                    date={this.state.transactions[id].date}
                                     link={this.state.transactions[id].link}
                         
                                 />

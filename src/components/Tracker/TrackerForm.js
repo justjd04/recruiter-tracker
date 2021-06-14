@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import fire from '../../config/Fire';
+import DatePick from '../DatePick';
 
 const TrackerFormStyles = styled.div`
 div {
@@ -68,6 +69,8 @@ class TrackerForm extends React.Component {
       company: '',
       position: '',
       link: '',
+      status: '',
+      date: '',
       currentUID: fire.auth().currentUser.uid
   }
 
@@ -82,7 +85,7 @@ class TrackerForm extends React.Component {
 
   // add transaction
   addNewTransaction = () => {
-      const {name, company, position, link, currentUID} = this.state;
+      const {name, company, position, link, status, date, currentUID} = this.state;
       
 
       // validation
@@ -94,6 +97,8 @@ class TrackerForm extends React.Component {
               name: name,
               company: company,
               position: position,
+              status: status,
+              date: date,
               link: link,
               user_id: currentUID
           });
@@ -103,6 +108,8 @@ class TrackerForm extends React.Component {
               name: name,
               company: company,
               position: position,
+              status: status,
+              date: date,
               link: link,
               user_id: currentUID
           }).then((data) => {
@@ -113,6 +120,8 @@ class TrackerForm extends React.Component {
                   name: '',
                   company: '',
                   position: '',
+                  status: '',
+                  date: '',
                   link: ''
               })
           }).catch((error)=>{
@@ -137,6 +146,8 @@ class TrackerForm extends React.Component {
                   company: childSnapshot.val().company,
                   position: childSnapshot.val().position,
                   link: childSnapshot.val().link,
+                  status: childSnapshot.val().status,
+                  date: childSnapshot.val().date,
                   user_id: childSnapshot.val().user_id
               });
               // console.log(childSnapshot.val().name);
@@ -188,6 +199,28 @@ class TrackerForm extends React.Component {
       type="url"
       name="link"
       />
+      </div>
+
+      <div style={{display:"none",}}>
+
+      <div className="status">
+			onChange={this.handleChange('status')}
+			value={this.state.status}
+			<select name="status" id="status"> 
+			<option value="submitted" id="option1" selected >Submitted</option>
+			<option value="first interview" id="option2">First Interview</option>
+			<option value="additional interview" id="option3">Additional Interview</option>
+			<option value="final interview" id="option4">Final Interview</option>
+			<option value="offer" id="option5">Offer</option>
+			<option value="placement" id="option6">Placement</option>
+			<option value="rejected" id="option7">Rejected</option>
+			<option value="no update" id="option8">No Update</option>
+			</select></div>
+
+      <div className="date" name="date" id="date"
+      onChange={this.handleChange('date')}
+			value={this.state.date}><DatePick/></div>
+
       </div>
 
 			<p>

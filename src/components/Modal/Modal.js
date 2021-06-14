@@ -20,8 +20,9 @@ const ModalWrapper = styled.div`
   background: #fff;
   color: #000;
   display: grid;
-  position: relative;
-  z-index: 10;
+  position: absolute;
+  top: -250px;
+  z-index: 100;
   border-radius: 10px;
 `;
 

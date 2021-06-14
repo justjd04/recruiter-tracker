@@ -91,12 +91,14 @@ button {
 }
 `;
 
+
 const Transaction = props => {
 
 	const sortByDate = (a, b) => {
         return b.date - a.date;
     }
 
+	
     return (
         <TransactionStyles>
         <div className="tracker-item">
@@ -108,15 +110,16 @@ const Transaction = props => {
 
             <div className="position">{props.position}</div>
 
-            <div className="status"><select name="status" id="status"> 
-			<option id="option1" selected >Submitted</option>
-			<option id="option2">First Interview</option>
-			<option id="option3">Additional Interview</option>
-			<option id="option4">Final Interview</option>
-			<option id="option5">Offer</option>
-			<option id="option6">Placement</option>
-			<option id="option7">Rejected</option>
-			<option id="option8">No Update</option>
+            <div className="status">
+			<select name="status" id="status"> 
+			<option value="submitted" id="option1" selected >Submitted</option>
+			<option value="first interview" id="option2">First Interview</option>
+			<option value="additional interview" id="option3">Additional Interview</option>
+			<option value="final interview" id="option4">Final Interview</option>
+			<option value="offer" id="option5">Offer</option>
+			<option value="placement" id="option6">Placement</option>
+			<option value="rejected" id="option7">Rejected</option>
+			<option value="no update" id="option8">No Update</option>
 			</select></div>
 
             <div className="date"><DatePick/></div>
